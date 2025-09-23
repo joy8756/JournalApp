@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: Journal App
+
+  data:
+    mongodb:
+      uri: "mongodb+srv://journalApp_db_user:limon#9192@cluster0.nw8oqlz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      database: journaldb
+      auto-index-creation: true
+      # username: myUserName
+      # password: myPassword
+
+server:
+  port: 8080
