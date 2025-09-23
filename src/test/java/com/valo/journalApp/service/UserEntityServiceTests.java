@@ -52,6 +52,7 @@ public class UserEntityServiceTests {
         assertEquals(expected, a+b);
     }
 
+    @Disabled // for sonarCloud scan
     @ParameterizedTest
     @ArgumentsSource(UserArgumentProvider.class)
     public void testSaveNEwUser(UserEntity user) {

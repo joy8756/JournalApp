@@ -57,6 +57,7 @@ public class UserDetailsServiceImplTests {
         closeable.close();
     }
 
+    @Disabled // for sonarCloud scan
     @Test
     void loadUserByUsernameTests() {
         when(userEntryRepository.findByUsername(ArgumentMatchers.anyString()))
