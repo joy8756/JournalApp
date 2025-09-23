@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class JournalApplicationTests {
 
-    @Disabled // for sonarCloud scan
 	@Test
 	void contextLoads() {
 	}
