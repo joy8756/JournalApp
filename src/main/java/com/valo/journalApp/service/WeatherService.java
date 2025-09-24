@@ -3,16 +3,19 @@ package com.valo.journalApp.service;
 import com.valo.journalApp.api.response.WeatherResponse;
 import com.valo.journalApp.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Component
+@Service
 public class WeatherService {
-    private static final String apiKey = "4a1f3d48f91ee92ac0c171dc1c89c74c";
+    // stored in application.yml
+    @Value("${weather.api.key}")
+    private String apiKey;
     private static final String API = "https://api.weatherstack.com/current?access_key=API_KEY&query=CITY";
 
     @Autowired

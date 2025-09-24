@@ -1,3 +1,7 @@
 spring:
   profiles:
     active: dev
+
+weather:
+  api:
+    key: 4a1f3d48f91ee92ac0c171dc1c89c74c

@@ -53,4 +53,16 @@ public class UserEntryCotroller {
         }
         return new ResponseEntity<>("Hi " + authentication.getName() + greeting, HttpStatus.OK);
     }
+
+    @GetMapping("/sentimentAnalysis")
+    public ResponseEntity<?> getUsersWithSA() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        WeatherResponse weatherResponse = weatherService.getWeather("Mumbai");
+        String greeting = "";
+        if (weatherResponse != null) {
+            int feelsLike = weatherResponse.getCurrent().getFeelslike();
+            greeting = ", weather feels like " + feelsLike;
+        }
+        return new ResponseEntity<>("Hi " + authentication.getName() + greeting, HttpStatus.OK);
+    }
 }
