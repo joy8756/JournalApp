@@ -1,7 +1,9 @@
 package com.valo.journalApp.controller;
 
+import com.valo.journalApp.api.response.WeatherResponse;
 import com.valo.journalApp.entity.UserEntity;
 import com.valo.journalApp.service.UserEntryService;
+import com.valo.journalApp.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ import java.util.List;
 public class UserEntryCotroller {
     @Autowired
     private UserEntryService userEntryService;
+
+    @Autowired
+    private WeatherService weatherService;
 
     @DeleteMapping
     public ResponseEntity<?> deleteUser() {
@@ -37,4 +42,15 @@ public class UserEntryCotroller {
         return new ResponseEntity<>(old, HttpStatus.OK);
     }
 
+    @GetMapping("/greeting")
+    public ResponseEntity<?> greeting() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        WeatherResponse weatherResponse = weatherService.getWeather("Mumbai");
+        String greeting = "";
+        if (weatherResponse != null) {
+            int feelsLike = weatherResponse.getCurrent().getFeelslike();
+            greeting = ", weather feels like " + feelsLike;
+        }
+        return new ResponseEntity<>("Hi " + authentication.getName() + greeting, HttpStatus.OK);
+    }
 }
